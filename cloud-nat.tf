@@ -5,7 +5,7 @@ module "cloud-nat" {
   project_id                          = "development-314115"
   region                              = "europe-west1"
   router                              = "tf-router"
-  #create_router                       = true
+  create_router                       = true
   enable_endpoint_independent_mapping = false
   network                             = "terraform-network"
   source_subnetwork_ip_ranges_to_nat  = "LIST_OF_SUBNETWORKS"
@@ -16,5 +16,8 @@ module "cloud-nat" {
       secondary_ip_range_names = null
 
     }
+  ]
+  depends_on = [
+    module.network
   ]
 }
