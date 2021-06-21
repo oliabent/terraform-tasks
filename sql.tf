@@ -13,7 +13,7 @@ module "sql-db_mysql" {
   version = "5.1.1"
   database_version    = "MYSQL_5_7"
   encryption_key_name = null
-  name                = "wordpress-database1"
+  name                = "wordpress-database7"
   project_id          = "development-314115"
   region              = "europe-west1"
   zone                = "europe-west1-b"
@@ -24,7 +24,7 @@ module "sql-db_mysql" {
   deletion_protection = false
 
   user_name     = "wordpressuser"
-  user_password = ""
+  user_password = "qwerty"
   tier = "db-f1-micro"
   
 ip_configuration = {
