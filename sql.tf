@@ -9,35 +9,35 @@ module "sql-db_private_service_access" {
 }
 
 module "sql-db_mysql" {
-  source  = "GoogleCloudPlatform/sql-db/google//modules/mysql"
-  version = "5.1.1"
+  source              = "GoogleCloudPlatform/sql-db/google//modules/mysql"
+  version             = "5.1.1"
   database_version    = "MYSQL_5_7"
   encryption_key_name = null
-  name                = "wordpress-database7"
+  name                = "wordpress-database12"
   project_id          = "development-314115"
   region              = "europe-west1"
   zone                = "europe-west1-b"
   db_name             = "wordpress"
   db_charset          = "utf8"
   db_collation        = "utf8_unicode_ci"
-  create_timeout = "30m"
+  create_timeout      = "30m"
   deletion_protection = false
 
   user_name     = "wordpressuser"
   user_password = "qwerty"
-  tier = "db-f1-micro"
-  
-ip_configuration = {
-    ipv4_enabled    = false 
-    require_ssl     = null
-    private_network = "projects/development-314115/global/networks/terraform-network"
+  tier          = "db-f1-micro"
+
+  ip_configuration = {
+    ipv4_enabled        = false
+    require_ssl         = null
+    private_network     = "projects/development-314115/global/networks/terraform-network"
     authorized_networks = []
   }
 
 
   availability_type = "REGIONAL"
 
- backup_configuration = {
+  backup_configuration = {
     enabled                        = true
     binary_log_enabled             = true
     start_time                     = "02:55"

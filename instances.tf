@@ -17,7 +17,7 @@ module "vm_instance_template" {
   source_image_project = "ubuntu-os-cloud"
 
   subnetwork     = "private-subnet"
-  startup_script = file("./wordpress_template.sh")
+  startup_script = data.template_file.config.rendered
 
   depends_on = [
     module.network
@@ -29,14 +29,23 @@ module "vm_mig" {
   source  = "terraform-google-modules/vm/google//modules/mig"
   version = "6.5.0"
   # insert the 3 required variables here
-  project_id       = "development-314115"
-  region           = "europe-west1"
+  project_id        = "development-314115"
+  region            = "europe-west1"
   instance_template = module.vm_instance_template.self_link
-  target_size = "2"
-  mig_name = "wp-group"
+  target_size       = "2"
+  mig_name          = "wp-group"
 
-   depends_on = [
+  depends_on = [
     module.sql-db_mysql,
-    module.cloud-storage_simple_bucket
+    module.cloud-storage_simple_bucket,
+    module.vm_instance_template
   ]
+}
+
+
+data "template_file" "config" {
+  template = file("wordpress_template.tpl")
+  vars = {
+  DB_HOST = module.sql-db_mysql.private_ip_address
+ }
 }

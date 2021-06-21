@@ -2,9 +2,9 @@ module "lb-http" {
   source  = "GoogleCloudPlatform/lb-http/google"
   version = "5.1.1"
   # insert the 10 required variables here
-   project       = "development-314115"
-   name = "wp-lb"
-    backends = {
+  project = "development-314115"
+  name    = "wp-lb"
+  backends = {
     default = {
       description                     = null
       protocol                        = "HTTP"
@@ -28,7 +28,7 @@ module "lb-http" {
         logging             = null
       }
       log_config = {
-        enable = true
+        enable      = true
         sample_rate = 1.0
       }
       groups = [
