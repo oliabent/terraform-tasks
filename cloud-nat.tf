@@ -2,7 +2,7 @@ module "cloud-nat" {
   source  = "terraform-google-modules/cloud-nat/google"
   version = "~> 2.0.0"
   # insert the 4 required variables here
-  project_id                          = "development-314115"
+  project_id                          = var.my_project
   region                              = "europe-west1"
   router                              = "tf-router"
   create_router                       = true

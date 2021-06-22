@@ -1,7 +1,7 @@
 module "sql-db_private_service_access" {
   source      = "GoogleCloudPlatform/sql-db/google//modules/private_service_access"
   version     = "5.1.1"
-  project_id  = "development-314115"
+  project_id  = var.my_project
   vpc_network = "terraform-network"
   depends_on = [
     module.network
@@ -14,7 +14,7 @@ module "sql-db_mysql" {
   database_version    = "MYSQL_5_7"
   encryption_key_name = null
   name                = "wordpress-database12"
-  project_id          = "development-314115"
+  project_id          = var.my_project
   region              = "europe-west1"
   zone                = "europe-west1-b"
   db_name             = "wordpress"

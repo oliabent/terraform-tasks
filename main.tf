@@ -12,7 +12,7 @@ terraform {
 }
 
 provider "google" {
-  project = "development-314115"
+  project = var.my_project
   region  = "europe-west1"
 }
 

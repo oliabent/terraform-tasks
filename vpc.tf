@@ -1,7 +1,7 @@
 module "network" {
   source                  = "terraform-google-modules/network/google"
   version                 = "3.3.0"
-  project_id              = "development-314115"
+  project_id              = var.my_project
   network_name            = "terraform-network"
   auto_create_subnetworks = false
   subnets = [
