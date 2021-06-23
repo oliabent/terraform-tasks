@@ -1,6 +1,9 @@
 #!/bin/bash
 DB_HOST="${DB_HOST}"
-
+DB_NAME="${DB_NAME}"
+DB_USER="${DB_USER}"
+DB_PASSWORD="${DB_PASSWORD}"
+WP_BUCKET="${WP_BUCKET}"
 sudo apt update
 sudo apt install apache2 -y
 sudo service apache2 start
@@ -19,9 +22,9 @@ touch /tmp/wordpress/.htaccess
 cp /tmp/wordpress/wp-config-sample.php /tmp/wordpress/wp-config.php
 mkdir /tmp/wordpress/wp-content/upgrade
 echo "<?php" > /tmp/wordpress/wp-config.php
-echo "define( 'DB_NAME', 'wordpress' );" >> /tmp/wordpress/wp-config.php
-echo "define( 'DB_USER', 'wordpressuser' );" >> /tmp/wordpress/wp-config.php
-echo "define( 'DB_PASSWORD', 'qwerty' );" >> /tmp/wordpress/wp-config.php
+echo "define( 'DB_NAME', '"$DB_NAME"' );" >> /tmp/wordpress/wp-config.php
+echo "define( 'DB_USER', '"$DB_USER"' );" >> /tmp/wordpress/wp-config.php
+echo "define( 'DB_PASSWORD', '"${DB_PASSWORD}"' );" >> /tmp/wordpress/wp-config.php
 echo "define( 'DB_HOST', '"$DB_HOST"' );" >> /tmp/wordpress/wp-config.php
 echo "define( 'DB_CHARSET', 'utf8' );" >> /tmp/wordpress/wp-config.php
 echo "define( 'DB_COLLATE', '' );" >> /tmp/wordpress/wp-config.php
@@ -51,7 +54,7 @@ echo "deb http://packages.cloud.google.com/apt $GCSFUSE_REPO main" | sudo tee /e
 curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 sudo apt-get update
 sudo apt-get install gcsfuse  -y
-gcsfuse -o allow_other --uid=33 --gid=33 mytestbucket_obent12 /var/www
+gcsfuse -o allow_other --uid=33 --gid=33 "${WP_BUCKET}" /var/www
 sudo sed -i 's/www-data:x:33:33:www-data:\/var\/www:\/usr\/sbin\/nologin/www-data:x:33:33:www-data:\/var\/www:\/bin\/bash/' /etc/passwd
 sudo chown -R www-data:www-data /var/wwwobent/wordpress
 if [ $(ls -al /var/www/ | wc -l) -gt 3 ]

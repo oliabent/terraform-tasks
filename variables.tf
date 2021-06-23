@@ -1,10 +1,41 @@
 variable "my_project" {
-  type	= string
-  default = "development-314115"
+  description = "My GCP project name"
+  type        = string
+  default     = "development-314115"
+}
+
+variable "my_vpc_network" {
+  description = "My VPC network name"
+  type        = string
+  default     = "terraform-network"
 }
 
 variable "region" {
-  type	= string
-  default = "europe-west1"
+  description = "Region where resourcees will be deployed"
+  type        = string
+  default     = "europe-west1"
 }
 
+variable "wp_bucket_name" {
+  description = "Name of bucket used as a shared folder for wordpress managed instance group"
+  type        = string
+  default     = "wordpress-bucket-2-obent"
+}
+
+variable "sql_server_name" {
+  description = "SQL serever name"
+  type        = string
+  default     = "wordpress-db-server-2"
+}
+
+variable "wp_db_name" {
+  description = "Wordpress database name"
+  type        = string
+  default     = "wordpress"
+}
+
+variable "wp_db_user" {
+  description = "Wordpress database user name"
+  type        = string
+  default     = "wordpressuser"
+}
