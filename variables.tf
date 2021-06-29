@@ -19,13 +19,13 @@ variable "region" {
 variable "wp_bucket_name" {
   description = "Name of bucket used as a shared folder for wordpress managed instance group"
   type        = string
-  default     = "wordpress-bucket-2-obent"
+  default     = "wordpress-bucket"
 }
 
 variable "sql_server_name" {
   description = "SQL serever name"
   type        = string
-  default     = "wordpress-db-server-2"
+  default     = "wordpress-db-server"
 }
 
 variable "wp_db_name" {

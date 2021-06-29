@@ -23,6 +23,7 @@ module "sql-db_mysql" {
   create_timeout      = "15m"
   deletion_protection = false
   user_name           = var.wp_db_user
+  user_host           = "10.174.0.0/255.255.240.0"
   tier                = "db-f1-micro"
 
   ip_configuration = {
